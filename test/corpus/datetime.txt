@@ -1,0 +1,1050 @@
+===============
+WHERE clause with YYYY-MM-DD date
+===============
+SELECT Id FROM Contact WHERE BirthDate = 1996-02-29
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (date_literal)))))))
+
+===============
+WHERE clause with YYYY-MM-DDThh:mm:ss+hh:mm datetime
+===============
+SELECT Id FROM Contact WHERE CreatedDate = 2022-01-01T23:01:01+01:00
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_literal)))))))
+
+===============
+WHERE clause with UTC datetime
+===============
+SELECT Id FROM Contact WHERE CreatedDate = 2022-01-01T23:01:01Z
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_literal)))))))
+
+===============
+DateTime with YESTERDAY
+===============
+SELECT Id FROM Account WHERE CreatedDate = YESTERDAY
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_yesterday))))))))
+
+===============
+DateTime with TODAY
+===============
+SELECT Id FROM Account WHERE CreatedDate > TODAY
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_today))))))))
+
+===============
+DateTime with TOMORROW
+===============
+SELECT Id FROM Opportunity WHERE CloseDate = TOMORROW
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_tomorrow))))))))
+
+===============
+DateTime with LAST_WEEK
+===============
+SELECT Id FROM Account WHERE CreatedDate > LAST_WEEK
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_week))))))))
+
+===============
+DateTime with THIS_WEEK
+===============
+SELECT Id FROM Account WHERE CreatedDate < THIS_WEEK
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_this_week))))))))
+
+===============
+DateTime with NEXT_WEEK
+===============
+SELECT Id FROM Opportunity WHERE CloseDate = NEXT_WEEK
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_next_week))))))))
+
+===============
+DateTime with LAST_MONTH
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > LAST_MONTH
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_month))))))))
+
+===============
+DateTime with THIS_MONTH
+===============
+SELECT Id FROM Account WHERE CreatedDate < THIS_MONTH
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_this_month))))))))
+
+===============
+DateTime with NEXT_MONTH
+===============
+SELECT Id FROM Opportunity WHERE CloseDate = NEXT_MONTH
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_next_month))))))))
+
+===============
+DateTime with LAST_90_DAYS
+===============
+SELECT Id FROM Account WHERE CreatedDate = LAST_90_DAYS
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_last_90_days))))))))
+
+===============
+DateTime with NEXT_90_DAYS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > NEXT_90_DAYS
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_next_90_days))))))))
+
+===============
+DateTime with LAST_N_DAYS
+===============
+SELECT Id FROM Account WHERE CreatedDate = LAST_N_DAYS:365
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_last_n_days
+                (number_literal)))))))))
+
+===============
+DateTime with NEXT_N_DAYS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > NEXT_N_DAYS:15
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_next_n_days
+                (number_literal)))))))))
+
+===============
+DateTime with NEXT_N_WEEKS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > NEXT_N_WEEKS:4
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_next_n_weeks
+                (number_literal)))))))))
+
+===============
+DateTime with LAST_N_WEEKS
+===============
+SELECT Id FROM Account WHERE CreatedDate = LAST_N_WEEKS:52
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_last_n_weeks
+                (number_literal)))))))))
+
+===============
+DateTime with NEXT_N_MONTHS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > NEXT_N_MONTHS:2
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_next_n_months
+                (number_literal)))))))))
+
+===============
+DateTime with LAST_N_MONTHS
+===============
+SELECT Id FROM Account WHERE CreatedDate = LAST_N_MONTHS:12
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_last_n_months
+                (number_literal)))))))))
+
+===============
+DateTime with THIS_QUARTER
+===============
+SELECT Id FROM Account WHERE CreatedDate = THIS_QUARTER
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_this_quarter))))))))
+
+===============
+DateTime with LAST_QUARTER
+===============
+SELECT Id FROM Account WHERE CreatedDate > LAST_QUARTER
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_quarter))))))))
+
+===============
+DateTime with NEXT_QUARTER
+===============
+SELECT Id FROM Account WHERE CreatedDate < NEXT_QUARTER
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_quarter))))))))
+
+===============
+DateTime with NEXT_N_QUARTERS
+===============
+SELECT Id FROM Account WHERE CreatedDate < NEXT_N_QUARTERS:2
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_n_quarters
+                (number_literal)))))))))
+
+===============
+DateTime with LAST_N_QUARTERS
+===============
+SELECT Id FROM Account WHERE CreatedDate > LAST_N_QUARTERS:2
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_n_quarters
+                (number_literal)))))))))
+
+===============
+DateTime with THIS_YEAR
+===============
+SELECT Id FROM Opportunity WHERE CloseDate = THIS_YEAR
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_this_year))))))))
+
+===============
+DateTime with LAST_YEAR
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > LAST_YEAR
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_year))))))))
+
+===============
+DateTime with NEXT_YEAR
+===============
+SELECT Id FROM Opportunity WHERE CloseDate < NEXT_YEAR
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_year))))))))
+
+===============
+DateTime with NEXT_N_YEARS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate < NEXT_N_YEARS:5
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_n_years
+                (number_literal)))))))))
+
+===============
+DateTime with LAST_N_YEARS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > LAST_N_YEARS:5
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_n_years
+                (number_literal)))))))))
+
+===============
+DateTime with THIS_FISCAL_QUARTER
+===============
+SELECT Id FROM Account WHERE CreatedDate = THIS_FISCAL_QUARTER
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_this_fiscal_quarter))))))))
+
+===============
+DateTime with LAST_FISCAL_QUARTER
+===============
+SELECT Id FROM Account WHERE CreatedDate > LAST_FISCAL_QUARTER
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_fiscal_quarter))))))))
+
+===============
+DateTime with NEXT_FISCAL_QUARTER
+===============
+SELECT Id FROM Account WHERE CreatedDate < NEXT_FISCAL_QUARTER
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_fiscal_quarter))))))))
+
+===============
+DateTime with NEXT_N_FISCAL_QUARTERS
+===============
+SELECT Id FROM Account WHERE CreatedDate < NEXT_N_FISCAL_QUARTERS:6
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_n_fiscal_quarters
+                (number_literal)))))))))
+
+===============
+DateTime with LAST_N_FISCAL_QUARTERS
+===============
+SELECT Id FROM Account WHERE CreatedDate > LAST_N_FISCAL_QUARTERS:6
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_n_fiscal_quarters
+                (number_literal)))))))))
+
+===============
+DateTime with THIS_FISCAL_YEAR
+===============
+SELECT Id FROM Opportunity WHERE CloseDate = THIS_FISCAL_YEAR
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (datetime_operator
+              (operator_this_fiscal_year))))))))
+
+===============
+DateTime with LAST_FISCAL_YEAR
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > LAST_FISCAL_YEAR
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_operator
+              (operator_last_fiscal_year))))))))
+
+===============
+DateTime with NEXT_FISCAL_YEAR
+===============
+SELECT Id FROM Opportunity WHERE CloseDate < NEXT_FISCAL_YEAR
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_fiscal_year))))))))
+
+===============
+DateTime with NEXT_N_FISCAL_YEARS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate < NEXT_N_FISCAL_YEARS:3
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_operator
+              (operator_next_n_fiscal_years
+                (number_literal)))))))))
+
+===============
+DateTime with LAST_N_FISCAL_YEARS
+===============
+SELECT Id FROM Opportunity WHERE CloseDate > LAST_N_FISCAL_YEARS:3
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+              (value
+                (datetime_operator
+                  (operator_last_n_fiscal_years
+                    (number_literal)))))))))

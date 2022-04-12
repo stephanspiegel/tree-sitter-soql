@@ -1,0 +1,382 @@
+==================
+Simple SELECT
+==================
+SELECT Id FROM Account
+---
+(source_file
+    (query
+        (keyword_select)
+        (fieldList
+            (fieldName (identifier))
+        )
+        (keyword_from)
+        (sObject (identifier))
+    ))
+
+==================
+Simple SELECT with multiple fields
+==================
+
+SELECT Id, Name FROM Account
+
+---
+(source_file
+    (query
+        (keyword_select)
+        (fieldList
+            (fieldName name: (identifier))
+            (fieldName name: (identifier))
+        )
+        (keyword_from)
+        (sObject (identifier))
+    ))
+
+==================
+Simple SELECT with parent fields
+==================
+
+SELECT Account.Name FROM Contact
+
+---
+(source_file
+    (query
+        (keyword_select)
+        (fieldList
+            (fieldName
+                parentSObject: (identifier)
+                name: (identifier)
+            )
+        )
+        (keyword_from)
+        (sObject (identifier))
+    ))
+
+==================
+Simple SELECT with three levels of parent fields
+==================
+
+SELECT Parent__r.GrandParent__r.Name FROM GrandChild__c
+
+---
+(source_file
+    (query
+        (keyword_select)
+        (fieldList
+            (fieldName
+                parentSObject: (identifier)
+                parentSObject: (identifier)
+                name: (identifier)
+            )
+        )
+        (keyword_from)
+        (sObject (identifier))
+    ))
+
+==================
+SELECT with WHERE clause, ORDER BY clause and LIMIT clause
+==================
+
+SELECT Id, Name FROM Account WHERE Name = 'Test' ORDER BY CreatedDate LIMIT 1
+
+---
+(source_file
+    (query
+        (keyword_select)
+        (fieldList
+            (fieldName name: (identifier))
+            (fieldName name: (identifier))
+        )
+        (keyword_from)
+        (sObject (identifier))
+        (where
+            (keyword_where)
+            (conditionExpression
+                (fieldExpression
+                    (fieldName name: (identifier))
+                    (comparisonOperator (operator_equals))
+                    (value (string_literal))
+                )
+            )
+        )
+        (order_by
+          (keyword_orderby)
+          (fieldOrderByList
+            (fieldName
+              name: (identifier))))
+        (limit
+          (keyword_limit)
+          (numberOfRowsToReturn (number_literal)))))
+
+===============
+String with quotes
+===============
+SELECT Id FROM Account WHERE Name = 'Bob\'s \'Burgers\''
+---
+(source_file
+
+    (query
+        (keyword_select)
+        (fieldList
+            (fieldName name: (identifier))
+        )
+        (keyword_from)
+        (sObject (identifier))
+        (where 
+            (keyword_where)
+            (conditionExpression
+                (fieldExpression
+                    (fieldName name: (identifier))
+                    (comparisonOperator (operator_equals))
+                    (value (string_literal))
+                )
+            )
+        )
+    ))
+
+===============
+WHERE clause with null
+===============
+SELECT Id FROM Account WHERE Name = null
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier))
+            (comparisonOperator (operator_equals))
+            (value
+              (null_literal)))))
+    ))
+
+===============
+WHERE clause with parent field
+===============
+SELECT Id FROM Contact WHERE Account.Name = 'Molinar'
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier)
+              (identifier))
+            (comparisonOperator (operator_equals))
+            (value
+              (string_literal)))))
+    ))
+
+===============
+WHERE clause with LIKE
+===============
+SELECT Id FROM Contact WHERE Name LIKE '%deVries%'
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier))
+            (comparisonOperator
+              (operator_like))
+            (value
+              (string_literal)))))))
+
+===============
+WHERE clause with AND
+===============
+SELECT Name FROM Contact WHERE LastName = 'Boehm' AND FirstName = 'Anton'
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier))
+            (comparisonOperator
+              (operator_equals))
+            (value
+              (string_literal)))
+          (logical_operator
+            (operator_and))
+          (fieldExpression
+            (fieldName
+              (identifier))
+            (comparisonOperator
+              (operator_equals))
+            (value
+              (string_literal)))))))
+
+===============
+WHERE clause with IN
+===============
+SELECT Name FROM Account WHERE BillingState IN ('California', 'New York')
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonListOperator
+            (operator_in))
+          (value
+            (string_literal))
+          (value
+            (string_literal)))))))
+
+===============
+WHERE clause with subquery
+===============
+SELECT Id FROM Account WHERE Id IN 
+  ( SELECT AccountId FROM Opportunity WHERE StageName = 'Closed Lost' )
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier))
+            (comparisonListOperator
+              (operator_in))
+            (query
+              (keyword_select)
+              (fieldList
+                (fieldName
+                  (identifier)))
+              (keyword_from)
+              (sObject
+                (identifier))
+              (where
+                (keyword_where)
+                (conditionExpression
+                  (fieldExpression
+                    (fieldName
+                      (identifier))
+                    (comparisonOperator
+                      (operator_equals))
+                    (value
+                      (string_literal)))))))))))
+
+===============
+WHERE clause with parentheses
+===============
+SELECT Id FROM Contact 
+WHERE Title = 'CEO' 
+OR (FirstName = 'Bill' AND LastName = 'Gates')
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier))
+            (comparisonOperator
+              (operator_equals))
+            (value
+              (string_literal)))
+          (logical_operator
+            (operator_or))
+          (fieldExpressionGroup
+            (fieldExpression
+              (fieldName
+                (identifier))
+              (comparisonOperator
+                (operator_equals))
+              (value
+                (string_literal)))
+            (logical_operator
+              (operator_and))
+            (fieldExpression
+              (fieldName
+                (identifier))
+              (comparisonOperator
+                (operator_equals))
+              (value
+                (string_literal))))))))
+
+==================
+SELECT with subquery
+==================
+SELECT Account.Name, (SELECT LastName FROM Contacts) FROM Account
+---
+(source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)
+          (identifier))
+        (query
+          (keyword_select)
+          (fieldList
+            (fieldName
+              (identifier)))
+          (keyword_from)
+          (sObject
+            (identifier))))
+      (keyword_from)
+      (sObject (identifier))))

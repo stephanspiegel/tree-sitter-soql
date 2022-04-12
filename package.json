@@ -1,0 +1,33 @@
+{
+  "name": "tree-sitter-soql",
+  "version": "1.0.0",
+  "description": "Tree-sitter grammar for SOQL (Salesforce Object Query Language)",
+  "main": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "install": "node-gyp rebuild"
+  },
+  "author": "Stephan Spiegel",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "gypfile": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephanspiegel/tree-sitter-soql.git"
+  },
+  "keywords": [
+    "salesforce",
+    "soql",
+    "treesitter"
+  ],
+  "bugs": {
+    "url": "https://github.com/stephanspiegel/tree-sitter-soql/issues"
+  },
+  "homepage": "https://github.com/stephanspiegel/tree-sitter-soql#readme",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.6"
+  }
+}

@@ -1,0 +1,1387 @@
+[
+  {
+    "type": "aggregateFunction",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "fieldName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alias",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "comparisonListOperator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator_in",
+          "named": true
+        },
+        {
+          "type": "operator_not_in",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comparisonOperator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator_equals",
+          "named": true
+        },
+        {
+          "type": "operator_excludes",
+          "named": true
+        },
+        {
+          "type": "operator_greater_or_equal",
+          "named": true
+        },
+        {
+          "type": "operator_greater_than",
+          "named": true
+        },
+        {
+          "type": "operator_includes",
+          "named": true
+        },
+        {
+          "type": "operator_less_or_equal",
+          "named": true
+        },
+        {
+          "type": "operator_less_than",
+          "named": true
+        },
+        {
+          "type": "operator_like",
+          "named": true
+        },
+        {
+          "type": "operator_not_equals",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditionExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldExpression",
+          "named": true
+        },
+        {
+          "type": "fieldExpressionGroup",
+          "named": true
+        },
+        {
+          "type": "logical_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "datetime_operator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator_last_90_days",
+          "named": true
+        },
+        {
+          "type": "operator_last_fiscal_quarter",
+          "named": true
+        },
+        {
+          "type": "operator_last_fiscal_year",
+          "named": true
+        },
+        {
+          "type": "operator_last_month",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_days",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_fiscal_quarters",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_fiscal_years",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_months",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_quarters",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_weeks",
+          "named": true
+        },
+        {
+          "type": "operator_last_n_years",
+          "named": true
+        },
+        {
+          "type": "operator_last_quarter",
+          "named": true
+        },
+        {
+          "type": "operator_last_week",
+          "named": true
+        },
+        {
+          "type": "operator_last_year",
+          "named": true
+        },
+        {
+          "type": "operator_next_90_days",
+          "named": true
+        },
+        {
+          "type": "operator_next_fiscal_quarter",
+          "named": true
+        },
+        {
+          "type": "operator_next_fiscal_year",
+          "named": true
+        },
+        {
+          "type": "operator_next_month",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_days",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_fiscal_quarters",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_fiscal_years",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_months",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_quarters",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_weeks",
+          "named": true
+        },
+        {
+          "type": "operator_next_n_years",
+          "named": true
+        },
+        {
+          "type": "operator_next_quarter",
+          "named": true
+        },
+        {
+          "type": "operator_next_week",
+          "named": true
+        },
+        {
+          "type": "operator_next_year",
+          "named": true
+        },
+        {
+          "type": "operator_this_fiscal_quarter",
+          "named": true
+        },
+        {
+          "type": "operator_this_fiscal_year",
+          "named": true
+        },
+        {
+          "type": "operator_this_month",
+          "named": true
+        },
+        {
+          "type": "operator_this_quarter",
+          "named": true
+        },
+        {
+          "type": "operator_this_week",
+          "named": true
+        },
+        {
+          "type": "operator_this_year",
+          "named": true
+        },
+        {
+          "type": "operator_today",
+          "named": true
+        },
+        {
+          "type": "operator_tomorrow",
+          "named": true
+        },
+        {
+          "type": "operator_yesterday",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "elseFieldList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fieldExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comparisonListOperator",
+          "named": true
+        },
+        {
+          "type": "comparisonOperator",
+          "named": true
+        },
+        {
+          "type": "fieldName",
+          "named": true
+        },
+        {
+          "type": "query",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fieldExpressionGroup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldExpression",
+          "named": true
+        },
+        {
+          "type": "logical_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fieldGroupByList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fieldHavingExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregateFunction",
+          "named": true
+        },
+        {
+          "type": "comparisonListOperator",
+          "named": true
+        },
+        {
+          "type": "comparisonOperator",
+          "named": true
+        },
+        {
+          "type": "fieldName",
+          "named": true
+        },
+        {
+          "type": "query",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fieldList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregateFunction",
+          "named": true
+        },
+        {
+          "type": "alias",
+          "named": true
+        },
+        {
+          "type": "fieldName",
+          "named": true
+        },
+        {
+          "type": "query",
+          "named": true
+        },
+        {
+          "type": "typeof",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fieldName",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parentSObject": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "fieldOrderByList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "group_by",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldGroupByList",
+          "named": true
+        },
+        {
+          "type": "having",
+          "named": true
+        },
+        {
+          "type": "keyword_group_by",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "having",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "havingConditionExpression",
+          "named": true
+        },
+        {
+          "type": "keyword_having",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "havingConditionExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldExpressionGroup",
+          "named": true
+        },
+        {
+          "type": "fieldHavingExpression",
+          "named": true
+        },
+        {
+          "type": "logical_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "limit",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword_limit",
+          "named": true
+        },
+        {
+          "type": "numberOfRowsToReturn",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "logical_operator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator_and",
+          "named": true
+        },
+        {
+          "type": "operator_not",
+          "named": true
+        },
+        {
+          "type": "operator_or",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nullHandling",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "numberOfRowsToReturn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "offset",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_days",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_fiscal_quarters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_fiscal_years",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_months",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_quarters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_weeks",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_last_n_years",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_days",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_fiscal_quarters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_fiscal_years",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_months",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_quarters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_weeks",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_next_n_years",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "orderDirection",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "order_by",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldOrderByList",
+          "named": true
+        },
+        {
+          "type": "keyword_orderby",
+          "named": true
+        },
+        {
+          "type": "nullHandling",
+          "named": true
+        },
+        {
+          "type": "orderDirection",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldList",
+          "named": true
+        },
+        {
+          "type": "group_by",
+          "named": true
+        },
+        {
+          "type": "keyword_from",
+          "named": true
+        },
+        {
+          "type": "keyword_select",
+          "named": true
+        },
+        {
+          "type": "limit",
+          "named": true
+        },
+        {
+          "type": "offset",
+          "named": true
+        },
+        {
+          "type": "order_by",
+          "named": true
+        },
+        {
+          "type": "sObject",
+          "named": true
+        },
+        {
+          "type": "where",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sObject",
+    "named": true,
+    "fields": {
+      "parentSObject": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "query",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "typeof",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "elseFieldList",
+          "named": true
+        },
+        {
+          "type": "keyword_else",
+          "named": true
+        },
+        {
+          "type": "keyword_end",
+          "named": true
+        },
+        {
+          "type": "keyword_then",
+          "named": true
+        },
+        {
+          "type": "keyword_typeof",
+          "named": true
+        },
+        {
+          "type": "keyword_when",
+          "named": true
+        },
+        {
+          "type": "typeofField",
+          "named": true
+        },
+        {
+          "type": "whenFieldList",
+          "named": true
+        },
+        {
+          "type": "whenObjectType",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typeofField",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "date_literal",
+          "named": true
+        },
+        {
+          "type": "datetime_literal",
+          "named": true
+        },
+        {
+          "type": "datetime_operator",
+          "named": true
+        },
+        {
+          "type": "null_literal",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "whenFieldList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fieldList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "whenObjectType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "sObject",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "where",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "conditionExpression",
+          "named": true
+        },
+        {
+          "type": "keyword_where",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "LAST_N_DAYS",
+    "named": false
+  },
+  {
+    "type": "LAST_N_FISCAL_QUARTERS",
+    "named": false
+  },
+  {
+    "type": "LAST_N_FISCAL_YEARS",
+    "named": false
+  },
+  {
+    "type": "LAST_N_MONTHS",
+    "named": false
+  },
+  {
+    "type": "LAST_N_QUARTERS",
+    "named": false
+  },
+  {
+    "type": "LAST_N_WEEKS",
+    "named": false
+  },
+  {
+    "type": "LAST_N_YEARS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_DAYS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_FISCAL_QUARTERS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_FISCAL_YEARS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_MONTHS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_QUARTERS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_WEEKS",
+    "named": false
+  },
+  {
+    "type": "NEXT_N_YEARS",
+    "named": false
+  },
+  {
+    "type": "date_literal",
+    "named": true
+  },
+  {
+    "type": "datetime_literal",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "keyword_else",
+    "named": true
+  },
+  {
+    "type": "keyword_end",
+    "named": true
+  },
+  {
+    "type": "keyword_from",
+    "named": true
+  },
+  {
+    "type": "keyword_group_by",
+    "named": true
+  },
+  {
+    "type": "keyword_having",
+    "named": true
+  },
+  {
+    "type": "keyword_limit",
+    "named": true
+  },
+  {
+    "type": "keyword_orderby",
+    "named": true
+  },
+  {
+    "type": "keyword_select",
+    "named": true
+  },
+  {
+    "type": "keyword_then",
+    "named": true
+  },
+  {
+    "type": "keyword_typeof",
+    "named": true
+  },
+  {
+    "type": "keyword_when",
+    "named": true
+  },
+  {
+    "type": "keyword_where",
+    "named": true
+  },
+  {
+    "type": "null_literal",
+    "named": true
+  },
+  {
+    "type": "number_literal",
+    "named": true
+  },
+  {
+    "type": "operator_and",
+    "named": true
+  },
+  {
+    "type": "operator_equals",
+    "named": true
+  },
+  {
+    "type": "operator_excludes",
+    "named": true
+  },
+  {
+    "type": "operator_greater_or_equal",
+    "named": true
+  },
+  {
+    "type": "operator_greater_than",
+    "named": true
+  },
+  {
+    "type": "operator_in",
+    "named": true
+  },
+  {
+    "type": "operator_includes",
+    "named": true
+  },
+  {
+    "type": "operator_last_90_days",
+    "named": true
+  },
+  {
+    "type": "operator_last_fiscal_quarter",
+    "named": true
+  },
+  {
+    "type": "operator_last_fiscal_year",
+    "named": true
+  },
+  {
+    "type": "operator_last_month",
+    "named": true
+  },
+  {
+    "type": "operator_last_quarter",
+    "named": true
+  },
+  {
+    "type": "operator_last_week",
+    "named": true
+  },
+  {
+    "type": "operator_last_year",
+    "named": true
+  },
+  {
+    "type": "operator_less_or_equal",
+    "named": true
+  },
+  {
+    "type": "operator_less_than",
+    "named": true
+  },
+  {
+    "type": "operator_like",
+    "named": true
+  },
+  {
+    "type": "operator_next_90_days",
+    "named": true
+  },
+  {
+    "type": "operator_next_fiscal_quarter",
+    "named": true
+  },
+  {
+    "type": "operator_next_fiscal_year",
+    "named": true
+  },
+  {
+    "type": "operator_next_month",
+    "named": true
+  },
+  {
+    "type": "operator_next_quarter",
+    "named": true
+  },
+  {
+    "type": "operator_next_week",
+    "named": true
+  },
+  {
+    "type": "operator_next_year",
+    "named": true
+  },
+  {
+    "type": "operator_not",
+    "named": true
+  },
+  {
+    "type": "operator_not_equals",
+    "named": true
+  },
+  {
+    "type": "operator_not_in",
+    "named": true
+  },
+  {
+    "type": "operator_or",
+    "named": true
+  },
+  {
+    "type": "operator_this_fiscal_quarter",
+    "named": true
+  },
+  {
+    "type": "operator_this_fiscal_year",
+    "named": true
+  },
+  {
+    "type": "operator_this_month",
+    "named": true
+  },
+  {
+    "type": "operator_this_quarter",
+    "named": true
+  },
+  {
+    "type": "operator_this_week",
+    "named": true
+  },
+  {
+    "type": "operator_this_year",
+    "named": true
+  },
+  {
+    "type": "operator_today",
+    "named": true
+  },
+  {
+    "type": "operator_tomorrow",
+    "named": true
+  },
+  {
+    "type": "operator_yesterday",
+    "named": true
+  }
+]

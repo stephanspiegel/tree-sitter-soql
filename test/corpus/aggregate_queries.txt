@@ -1,0 +1,72 @@
+=======
+Simple aggregate query
+=======
+SELECT LeadSource, COUNT(Name) FROM Lead GROUP BY LeadSource
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (aggregateFunction
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (fieldName
+          (identifier))))))
+
+=======
+Aggregate query with AVG()
+=======
+SELECT CampaignId, AVG(Amount) FROM Opportunity GROUP BY CampaignId
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (aggregateFunction
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (fieldName
+          (identifier))))))
+
+=======
+Aggregate query with aliases
+=======
+SELECT Name n, MAX(Amount) max FROM Opportunity GROUP BY Name
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (alias
+        (identifier))
+      (aggregateFunction
+        (fieldName
+          (identifier)))
+      (alias
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (fieldName
+          (identifier))))))

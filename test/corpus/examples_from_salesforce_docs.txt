@@ -1,0 +1,708 @@
+=======
+Simple query
+=======
+SELECT Id, Name, BillingCity FROM Account
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+=======
+WHERE
+=======
+SELECT Id FROM Contact WHERE Name LIKE 'A%' AND MailingCity = 'California'
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_like))
+          (value
+            (string_literal)))
+        (logical_operator
+          (operator_and))
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (string_literal)))))))
+
+=======
+ORDER BY
+=======
+SELECT Name FROM Account ORDER BY Name DESC NULLS LAST
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (order_by
+      (keyword_orderby)
+      (fieldOrderByList
+        (fieldName
+          (identifier)))
+      (orderDirection)
+      (nullHandling))))
+
+=======
+LIMIT
+=======
+SELECT Name FROM Account WHERE Industry = 'media' LIMIT 125
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (string_literal)))))
+    (limit
+      (keyword_limit)
+      (numberOfRowsToReturn
+        (number_literal)))))
+
+=======
+ORDER BY with LIMIT
+=======
+SELECT Name FROM Account WHERE Industry = 'media' ORDER BY BillingPostalCode ASC NULLS LAST LIMIT 125
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (string_literal)))))
+    (order_by
+      (keyword_orderby)
+      (fieldOrderByList
+        (fieldName
+          (identifier)))
+      (orderDirection)
+      (nullHandling))
+    (limit
+      (keyword_limit)
+      (numberOfRowsToReturn
+        (number_literal)))))
+
+=======
+count()
+=======
+SELECT COUNT() FROM Contact
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (aggregateFunction))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+=======
+GROUP BY
+=======
+SELECT LeadSource, COUNT(Name) FROM Lead GROUP BY LeadSource
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (aggregateFunction
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (fieldName
+          (identifier))))))
+
+=======
+HAVING
+=======
+SELECT Name, COUNT(Id) FROM Account GROUP BY Name HAVING COUNT(Id) > 1
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (aggregateFunction
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (fieldName
+          (identifier)))
+      (having
+        (keyword_having)
+        (havingConditionExpression
+          (fieldHavingExpression
+            (aggregateFunction
+              (fieldName
+                (identifier)))
+            (comparisonOperator
+              (operator_greater_than))
+            (value
+              (number_literal))))))))
+=======
+OFFSET with ORDER BY
+=======
+SELECT Name, Id FROM Merchandise__c ORDER BY Name OFFSET 100
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (order_by
+      (keyword_orderby)
+      (fieldOrderByList
+        (fieldName
+          (identifier))))
+    (offset
+      (number_literal))))
+
+=======
+OFFSET with ORDER BY and LIMIT
+=======
+SELECT Name, Id FROM Merchandise__c ORDER BY Name LIMIT 20 OFFSET 100
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (order_by
+      (keyword_orderby)
+      (fieldOrderByList
+        (fieldName
+          (identifier))))
+    (limit
+      (keyword_limit)
+      (numberOfRowsToReturn
+        (number_literal)))
+    (offset
+      (number_literal))))
+
+=======
+Relationship queries: child-to-parent
+=======
+SELECT Contact.FirstName, Contact.Account.Name FROM Contact
+SELECT Id, Name, Account.Name FROM Contact WHERE Account.Industry = 'media'
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier)
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier)))
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier)
+            (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (string_literal)))))))
+
+=======
+Relationship queries: parent-to-child
+=======
+SELECT Name, (SELECT LastName FROM Contacts) FROM Account
+SELECT Account.Name, (SELECT Contact.LastName FROM Account.Contacts) FROM Account
+---
+  (source_file
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier))
+        (query
+          (keyword_select)
+          (fieldList
+            (fieldName
+              (identifier)))
+          (keyword_from)
+          (sObject
+            (identifier))))
+      (keyword_from)
+      (sObject
+        (identifier)))
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)
+          (identifier))
+        (query
+          (keyword_select)
+          (fieldList
+            (fieldName
+              (identifier)
+              (identifier)))
+          (keyword_from)
+          (sObject
+            (identifier)
+            (identifier))))
+      (keyword_from)
+      (sObject
+        (identifier))))
+=======
+Relationship query with WHERE
+=======
+SELECT Name, (SELECT LastName FROM Contacts WHERE CreatedBy.Alias = 'x') FROM Account WHERE Industry = 'media'
+---
+(source_file
+(query
+  (keyword_select)
+  (fieldList
+    (fieldName
+      (identifier))
+    (query
+      (keyword_select)
+      (fieldList
+        (fieldName
+          (identifier)))
+      (keyword_from)
+      (sObject
+        (identifier))
+      (where
+        (keyword_where)
+        (conditionExpression
+          (fieldExpression
+            (fieldName
+              (identifier)
+              (identifier))
+            (comparisonOperator
+              (operator_equals))
+            (value
+              (string_literal)))))))
+  (keyword_from)
+  (sObject
+    (identifier))
+  (where
+    (keyword_where)
+    (conditionExpression
+      (fieldExpression
+        (fieldName
+          (identifier))
+        (comparisonOperator
+          (operator_equals))
+        (value
+          (string_literal)))))))
+
+=======
+Relationship query: child-to parent with custom objects
+=======
+SELECT Id, FirstName__c, Mother_of_Child__r.FirstName__c FROM Daughter__c WHERE Mother_of_Child__r.LastName__c LIKE 'C%'
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier)
+            (identifier))
+          (comparisonOperator
+            (operator_like))
+          (value
+            (string_literal)))))))
+
+=======
+Relationship query: parent to child with custom objects
+=======
+SELECT Name, (SELECT Name FROM Line_Items__r) FROM Merchandise__c WHERE Name LIKE '%Acme%'
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (query
+        (keyword_select)
+        (fieldList
+          (fieldName
+            (identifier)))
+        (keyword_from)
+        (sObject
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_like))
+          (value
+            (string_literal)))))))
+
+=======
+Relationship queries with polymorphic key
+=======
+SELECT Id, Owner.Name FROM Task WHERE Owner.FirstName like 'B%'
+SELECT Id, Who.FirstName, Who.LastName FROM Task WHERE Owner.FirstName LIKE 'B%'
+SELECT Id, What.Name FROM Event
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier)
+            (identifier))
+          (comparisonOperator
+            (operator_like))
+          (value
+            (string_literal))))))
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier)
+            (identifier))
+          (comparisonOperator
+            (operator_like))
+          (value
+            (string_literal))))))
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+=======
+Polymorphic relationship queries using TYPEOF
+=======
+SELECT TYPEOF What WHEN Account THEN Phone, NumberOfEmployees WHEN Opportunity THEN Amount, CloseDate ELSE Name, Email END FROM Event
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (typeof
+        (keyword_typeof)
+        (typeofField
+          (fieldName
+            (identifier)))
+        (keyword_when)
+        (whenObjectType
+          (sObject
+            (identifier)))
+        (keyword_then)
+        (whenFieldList
+          (fieldList
+            (fieldName
+              (identifier))
+            (fieldName
+              (identifier))))
+        (keyword_when)
+        (whenObjectType
+          (sObject
+            (identifier)))
+        (keyword_then)
+        (whenFieldList
+          (fieldList
+            (fieldName
+              (identifier))
+            (fieldName
+              (identifier))))
+        (keyword_else)
+        (elseFieldList
+          (fieldList
+            (fieldName
+              (identifier))
+            (fieldName
+              (identifier))))
+        (keyword_end)))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+=======
+Relationship queries with aggregate
+=======
+SELECT Name, (SELECT CreatedBy.Name FROM Notes) FROM Account
+SELECT Amount, Id, Name, (SELECT Quantity, ListPrice, PricebookEntry.UnitPrice, PricebookEntry.Name FROM OpportunityLineItems) FROM Opportunity
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (query
+        (keyword_select)
+        (fieldList
+          (fieldName
+            (identifier)
+            (identifier)))
+        (keyword_from)
+        (sObject
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier)))
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (query
+        (keyword_select)
+        (fieldList
+          (fieldName
+            (identifier))
+          (fieldName
+            (identifier))
+          (fieldName
+            (identifier)
+            (identifier))
+          (fieldName
+            (identifier)
+            (identifier)))
+        (keyword_from)
+        (sObject
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+=======
+Simple query: the UserId and LoginTime for each user
+=======
+SELECT UserId, LoginTime from LoginHistory
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+=======
+Relationship queries with number of logins per user in a specific time range
+=======
+SELECT UserId, COUNT(Id) from LoginHistory WHERE LoginTime > 2010-09-20T22:16:30.000Z AND LoginTime < 2010-09-21T22:16:30.000Z GROUP BY UserId
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (aggregateFunction
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_greater_than))
+          (value
+            (datetime_literal)))
+        (logical_operator
+          (operator_and))
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonOperator
+            (operator_less_than))
+          (value
+            (datetime_literal)))))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (fieldName
+          (identifier))))))
+
+=======
+Query to retrieve the RecordType per user
+=======
+SELECT Id, Name, IsActive, SobjectType, DeveloperName, Description FROM RecordType
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))))
