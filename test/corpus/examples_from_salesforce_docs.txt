@@ -706,3 +706,32 @@ SELECT Id, Name, IsActive, SobjectType, DeveloperName, Description FROM RecordTy
     (keyword_from)
     (sObject
       (identifier))))
+
+=======
+WHERE clause with "includes"
+=======
+SELECT Id, MSP1__c from CustObj__c WHERE MSP1__c includes ('AAA;BBB','CCC')
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            (identifier))
+          (comparisonListOperator
+            (operator_includes))
+          (value
+            (string_literal))
+          (value
+            (string_literal)))))))

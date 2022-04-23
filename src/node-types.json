@@ -39,7 +39,15 @@
       "required": true,
       "types": [
         {
+          "type": "operator_excludes",
+          "named": true
+        },
+        {
           "type": "operator_in",
+          "named": true
+        },
+        {
+          "type": "operator_includes",
           "named": true
         },
         {
@@ -114,6 +122,21 @@
         },
         {
           "type": "logical_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dateFunction",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "fieldName",
           "named": true
         }
       ]
@@ -310,11 +333,19 @@
           "named": true
         },
         {
+          "type": "dateFunction",
+          "named": true
+        },
+        {
           "type": "fieldName",
           "named": true
         },
         {
           "type": "query",
+          "named": true
+        },
+        {
+          "type": "toLabel",
           "named": true
         },
         {
@@ -351,6 +382,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "dateFunction",
+          "named": true
+        },
         {
           "type": "fieldName",
           "named": true
@@ -410,11 +445,19 @@
           "named": true
         },
         {
+          "type": "dateFunction",
+          "named": true
+        },
+        {
           "type": "fieldName",
           "named": true
         },
         {
           "type": "query",
+          "named": true
+        },
+        {
+          "type": "toLabel",
           "named": true
         },
         {
@@ -464,6 +507,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "filterScope",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "group_by",
@@ -890,6 +938,10 @@
           "named": true
         },
         {
+          "type": "usingScope",
+          "named": true
+        },
+        {
           "type": "where",
           "named": true
         }
@@ -938,9 +990,48 @@
     }
   },
   {
-    "type": "string_literal",
+    "type": "special_character",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "string_escape_character",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "special_character",
+          "named": true
+        },
+        {
+          "type": "string_escape_character",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "toLabel",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "fieldName",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "typeof",
@@ -999,6 +1090,25 @@
       "types": [
         {
           "type": "fieldName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "usingScope",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "filterScope",
+          "named": true
+        },
+        {
+          "type": "keyword_using_scope",
           "named": true
         }
       ]
@@ -1089,6 +1199,14 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
     "type": "'",
     "named": false
   },
@@ -1110,6 +1228,14 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "B",
+    "named": false
+  },
+  {
+    "type": "F",
     "named": false
   },
   {
@@ -1141,6 +1267,10 @@
     "named": false
   },
   {
+    "type": "N",
+    "named": false
+  },
+  {
     "type": "NEXT_N_DAYS",
     "named": false
   },
@@ -1169,12 +1299,36 @@
     "named": false
   },
   {
+    "type": "R",
+    "named": false
+  },
+  {
+    "type": "T",
+    "named": false
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
+    "type": "b",
+    "named": false
+  },
+  {
     "type": "date_literal",
     "named": true
   },
   {
     "type": "datetime_literal",
     "named": true
+  },
+  {
+    "type": "f",
+    "named": false
   },
   {
     "type": "identifier",
@@ -1221,12 +1375,20 @@
     "named": true
   },
   {
+    "type": "keyword_using_scope",
+    "named": true
+  },
+  {
     "type": "keyword_when",
     "named": true
   },
   {
     "type": "keyword_where",
     "named": true
+  },
+  {
+    "type": "n",
+    "named": false
   },
   {
     "type": "null_literal",
@@ -1383,5 +1545,13 @@
   {
     "type": "operator_yesterday",
     "named": true
+  },
+  {
+    "type": "r",
+    "named": false
+  },
+  {
+    "type": "t",
+    "named": false
   }
 ]

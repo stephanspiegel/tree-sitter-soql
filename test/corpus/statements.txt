@@ -113,25 +113,30 @@ String with quotes
 SELECT Id FROM Account WHERE Name = 'Bob\'s \'Burgers\''
 ---
 (source_file
-
-    (query
-        (keyword_select)
-        (fieldList
-            (fieldName name: (identifier))
-        )
-        (keyword_from)
-        (sObject (identifier))
-        (where 
-            (keyword_where)
-            (conditionExpression
-                (fieldExpression
-                    (fieldName name: (identifier))
-                    (comparisonOperator (operator_equals))
-                    (value (string_literal))
-                )
-            )
-        )
-    ))
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        name: (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (fieldName
+            name: (identifier))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (string_literal
+              (string_escape_character)
+              (special_character)
+              (string_escape_character)
+              (special_character)
+              (string_escape_character)
+              (special_character))))))))
 
 ===============
 WHERE clause with null
@@ -380,3 +385,69 @@ SELECT Account.Name, (SELECT LastName FROM Contacts) FROM Account
             (identifier))))
       (keyword_from)
       (sObject (identifier))))
+
+==================
+SELECT with toLabel
+==================
+SELECT Company, toLabel(Recordtype.Name) FROM Lead
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (toLabel
+        (fieldName
+          (identifier)
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))))
+
+==================
+WHERE clause with toLabel
+==================
+SELECT Company, toLabel(Status) FROM Lead WHERE toLabel(Status) = 'Entwurf'
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (toLabel
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (toLabel
+            (fieldName
+              (identifier)))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (string_literal)))))))
+
+==================
+USING SCOPE
+==================
+SELECT Name FROM Account USING SCOPE team
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (usingScope
+      (keyword_using_scope)
+      (filterScope))))

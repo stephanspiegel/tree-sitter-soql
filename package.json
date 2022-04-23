@@ -21,7 +21,8 @@
   "keywords": [
     "salesforce",
     "soql",
-    "treesitter"
+    "tree-sitter",
+    "tree-sitter-parser"
   ],
   "bugs": {
     "url": "https://github.com/stephanspiegel/tree-sitter-soql/issues"

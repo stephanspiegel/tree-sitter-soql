@@ -1048,3 +1048,55 @@ SELECT Id FROM Opportunity WHERE CloseDate > LAST_N_FISCAL_YEARS:3
                 (datetime_operator
                   (operator_last_n_fiscal_years
                     (number_literal)))))))))
+
+===============
+CALENDAR_YEAR() in WHERE clause
+===============
+SELECT CreatedDate, Amount FROM Opportunity WHERE CALENDAR_YEAR(CreatedDate) = 2009
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (fieldName
+        (identifier))
+      (fieldName
+        (identifier)))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (where
+      (keyword_where)
+      (conditionExpression
+        (fieldExpression
+          (dateFunction
+            (fieldName
+              (identifier)))
+          (comparisonOperator
+            (operator_equals))
+          (value
+            (number_literal)))))))
+
+===============
+CALENDAR_YEAR() in SELECT and GROUP BY clause
+===============
+SELECT CALENDAR_YEAR(CloseDate)
+FROM Opportunity
+GROUP BY CALENDAR_YEAR(CloseDate)
+---
+(source_file
+  (query
+    (keyword_select)
+    (fieldList
+      (dateFunction
+        (fieldName
+          (identifier))))
+    (keyword_from)
+    (sObject
+      (identifier))
+    (group_by
+      (keyword_group_by)
+      (fieldGroupByList
+        (dateFunction
+          (fieldName
+            (identifier)))))))

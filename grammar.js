@@ -38,7 +38,7 @@ let _buildConditionExpression = ($, fieldExpr) => sequenceWithSeparator(
 )
 
 module.exports = grammar({
-  name: 'SOQL',
+  name: 'soql',
 
   word: $ => $.identifier,
 
@@ -49,6 +49,7 @@ module.exports = grammar({
       $.fieldList,
       $.keyword_from,
       $.sObject,
+      optional( $.usingScope ),
       optional( $.where ),
       optional( $.group_by ),
       optional( $.order_by ),
@@ -57,12 +58,15 @@ module.exports = grammar({
     ),
     keyword_select: $ => caseInsensitive('SELECT'),
     keyword_typeof: $ => caseInsensitive('TYPEOF'),
+    keyword_using_scope: $ => caseInsensitive('USING SCOPE'),
     keyword_when: $ => caseInsensitive('WHEN'),
     keyword_then: $ => caseInsensitive('THEN'),
     keyword_else: $ => caseInsensitive('ELSE'),
     keyword_end: $ => caseInsensitive('END'),
     keyword_from: $ => caseInsensitive('FROM'),
     keyword_where: $ => caseInsensitive('WHERE'),
+    // keyword_with: $ => caseInsensitive('WITH'),
+    // keyword_data_category: $ => caseInsensitive('DATA CATEGORY'),
     keyword_having: $ => caseInsensitive('HAVING'),
     keyword_group_by: $ => caseInsensitive('GROUP BY'),
     keyword_orderby: $ => caseInsensitive('ORDER BY'),
@@ -72,6 +76,8 @@ module.exports = grammar({
         withOptionalAlias($, $.fieldName),
         seq( '(', $.query, ')'),
         withOptionalAlias($, $.aggregateFunction),
+        withOptionalAlias($, $.dateFunction),
+        withOptionalAlias($, $.toLabel),
         $.typeof,
       ),
     ),
@@ -93,6 +99,22 @@ module.exports = grammar({
       makeFunction($, 'MAX'),
       makeFunction($, 'SUM'),
     ),
+    dateFunction: $ => choice(
+      makeFunction($, 'CALENDAR_MONTH'),
+      makeFunction($, 'CALENDAR_QUARTER'),
+      makeFunction($, 'CALENDAR_YEAR'),
+      makeFunction($, 'DAY_IN_MONTH'),
+      makeFunction($, 'DAY_IN_WEEK'),
+      makeFunction($, 'DAY_IN_YEAR'),
+      makeFunction($, 'DAY_ONLY'),
+      makeFunction($, 'FISCAL_MONTH'),
+      makeFunction($, 'FISCAL_QUARTER'),
+      makeFunction($, 'FISCAL_YEAR'),
+      makeFunction($, 'HOUR_IN_DAY'),
+      makeFunction($, 'WEEK_IN_MONTH'),
+      makeFunction($, 'WEEK_IN_YEAR'),
+    ),
+    toLabel: $ => makeFunction($, 'toLabel'),
     typeof: $ => seq(
       $.keyword_typeof,
       $.typeofField,
@@ -127,6 +149,16 @@ module.exports = grammar({
       ),
       $.identifier,
     ),
+    usingScope: $ => seq( $.keyword_using_scope, $.filterScope),
+    filterScope: $ => choice(
+        caseInsensitive('delegated'),
+        caseInsensitive('everything'),
+        caseInsensitive('mine'),
+        caseInsensitive('mine_and_my_groups'),
+        caseInsensitive('my_territory'),
+        caseInsensitive('my_team_territory'),
+        caseInsensitive('team'),
+    ),
     where: $ => seq(
       $.keyword_where,
       $.conditionExpression
@@ -139,7 +171,7 @@ module.exports = grammar({
     conditionExpression: $ => _buildConditionExpression($, $.fieldExpression),
     fieldExpression: $ => _buildFieldExpression(
       $,
-      [ $.fieldName ]
+      [ $.dateFunction, $.toLabel, $.fieldName ]
     ),
     fieldHavingExpression: $ => _buildFieldExpression(
       $, 
@@ -159,6 +191,8 @@ module.exports = grammar({
     comparisonListOperator: $ => choice(
       $.operator_in,
       $.operator_not_in,
+      $.operator_includes,
+      $.operator_excludes,
     ),
     operator_equals: $ => '=',
     operator_not_equals: $ => '!=',
@@ -264,7 +298,25 @@ module.exports = grammar({
       $.datetime_operator,
       //todo: bind variable
     ),
-    string_literal: $ => seq("'", repeat( choice(/\\'/, /[^']/)), "'"),
+    string_literal: $ => seq(
+        "'", 
+        repeat( choice($._string_escape_sequence, /[^']/)), 
+        "'"
+    ),
+    _string_escape_sequence: $ => seq( $.string_escape_character, $.special_character),
+    string_escape_character: $ => '\\',
+    special_character: $ => choice(
+      'n', 'N',
+      'r', 'R',
+      't', 'T',
+      'b', 'B',
+      'f', 'F',
+      '"',
+      "'",
+      '\\',
+      '_',
+      '%',
+    ),
     null_literal: $ => caseInsensitive('null'),
     number_literal: $ => /\d+/,
     date_literal: $ => /\d{4}-\d{2}-\d{2}/,
@@ -282,13 +334,22 @@ module.exports = grammar({
           timezone_literal
         )
     )},
-    // datetime_literal: $ => /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|(\+|-)\d{2}:\d{2})/,
+    // with: $ => seq(
+    //   $.keyword_with, 
+    //   optional($.keyword_data_category),
+    //   $.filterExpression,
+    // ),
+    // filterExpression: $ => '',
     group_by: $ => seq(
       $.keyword_group_by,
       $.fieldGroupByList,
       optional($.having)
     ),
-    fieldGroupByList: $ => listOf($.fieldName),
+    fieldGroupByList: $ => listOf(
+      choice(
+        $.fieldName, 
+        $.dateFunction)
+    ),
     having: $ => seq(
       $.keyword_having,
       $.havingConditionExpression
